@@ -1,0 +1,258 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.hero{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(112deg, rgba(218, 68, 68, 0.1) 50%, rgba(225,225,225,0.2) 50%);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-video{
+    width: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+.do{
+    font-weight: 700;
+    font-size: 19px;
+    color: aliceblue;
+}
+.h11{
+    color: aliceblue;
+    font-weight: 700;
+    font-size: 42px;
+}
+.h11 span{
+    font-size: 55px;
+}
+.cm{
+    float: right;
+    color: #fff;
+    font-weight: 500;
+    font-style: italic;
+}
+.content .btn{
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 9px;
+    border: 3px solid #fff;
+    background: none;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.btn span{
+    color: #fff;
+}
+.btn1:hover{
+    background-color: brown;
+}
+@media (min-aspect-ratio: 16/9){
+    .back-video{
+        width: 100%;
+        height: auto;
+    }
+}
+@media (max-aspect-ratio: 16/9){
+    .back-video{
+        width: auto;
+        height: 100%;
+    }
+}
+.container-fluid span{
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 700;
+}
+/* .modal-body{
+    position: absolute;
+    background-image: url('/image/pic.png');
+} */
+#login{
+    background-image: url("../image/programming1.png");
+    background-repeat:round;
+    background-size: contain, cover;
+}
+.login{
+    height: 90%;
+    display: flex;
+    justify-content: left;
+} 
+.login form{
+    width: 294px;
+    padding: 12px;
+    background-image: linear-gradient(125deg, rgba(253, 253, 253, 0.507) 50%, rgba(225, 225, 225, 0.932) 50%);
+    border-radius: 5px;
+}
+.login input{
+    width: 100%;
+    background: transparent;
+    padding: 12px;
+    margin-top: 9%;
+}
+.login button{
+    margin-top: 9%;
+    width: 100%;
+}
+
+.admin_btn{
+    /* display: table-caption; */
+    width: 200px;
+    background-color: aqua;
+    height: 100vh;
+}
+.tags{
+    padding-left: 4%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 500;
+    font-size: 23px;
+    text-decoration: none;
+}
+.adlogin{
+    margin: 85px 74px;
+}
+.cnt{
+    display: flex;
+    width: 100%;
+}
+.sdata{
+    width: 100%;
+}
+.profile_view{
+    text-align: center;
+}
+.profile_view .presonal_info{
+    display: inline-flex;
+    text-align: left;
+}
+.p_about h2 {
+    font-size: 33px;
+    font-weight: 800;
+    font-family: initial;
+    color: gray;
+}
+.p_about h3{
+    font-size: 23px;
+    font-weight: 800;
+    font-family: initial;
+    color: gray;
+}
+#c_tag{
+    font-weight: 500;
+    font-size: 35px;
+}
+.lt_info, .rt_info{
+    padding: 2%;
+    width: 358px;
+}
+.lt_info span, .rt_info span{
+    color: gray;
+}
+@media only screen and (max-width: 680px){
+    .p_about h2 {
+        font-size: 23px;
+        font-weight: 500;
+        font-family: initial;
+        color: gray;
+    }
+    .p_about h3{
+        font-size: 13px;
+        font-weight: 500;
+        font-family: initial;
+        color: gray;
+    }
+    #c_tag{
+        font-weight: 300;
+        font-size: 25px;
+    }
+    .lt_info, .rt_info{
+        padding: 2%;
+        width: 238px;
+    }
+    .lt_info h4, .rt_info h4{
+        font-size: 15px;
+    }
+
+}
+@media only screen and (max-width: 470px){
+    .profile_view{
+        text-align: center;
+    }
+    .profile_view .presonal_info{
+        display: block;
+    }
+    .lt_info, .rt_info{
+        padding: 2%;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+.notify, .assign{
+    background-color: rgba(63, 63, 177, 0.726);
+    margin: 4px;
+    border-radius: 10px;
+}
+.notify p, .assign p{
+    padding-top: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    /* padding-bottom: 0%; */
+}
+.notify span, .assign span{
+    font-size: 7px;
+    margin: 0px 0px;
+}
+.notify_container{
+    width: 100%;
+    height: 70vh;
+    margin: 4px 4px;
+    overflow: auto;
+    box-shadow: 20px 20px 50px 15px grey;
+}
+.notif{
+    width: 98%;
+    display: flex;
+    box-shadow: -11px -10px 35px -10px dodgerblue;
+    margin: 6px;
+}
+.fx{
+    padding: 20px 20px;
+}
+.fx p{
+    font-size: 33px;
+    color: darkgrey;
+    font-weight: 600;
+    margin-top: 24px;
+}
+.fx a{
+    font-size: 56px;
+    color: darkgrey;
+    font-weight:bolder;
+    box-shadow: -11px -10px 35px -10px dodgerblue;
+    border-radius: 45px;
+    padding: 0px 26px;
+}
+.dta{
+    width: 80%;
+}
+.notif .btnnn{
+    width: 20%;
+    text-align: center;
+}
+.btnnn a{
+    text-align: center;
+    justify-content: center;
+}

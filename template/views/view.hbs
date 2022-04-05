@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {{>header}}
+  <title>Profile View</title>
+</head>
+
+<body>
+  {{!-- <form action="/view" method="GET"> --}}
+    {{#each data}}
+    <img  alt="pro_pic" height="140" width="110" src="../uploads/image/{{this.propic}}">
+    <h5>Name: <span>{{this.name}}</span></h5>
+    <h5>Registration No: <span>{{this.regno}}</span></h5>
+    <h5>Email: <span>{{this.email}}</span></h5>
+    <h5>Date of Birth: <span>{{this.dob}}</span></h5>
+    <h5>Gender: <span>{{this.gen}}</span></h5>
+    <h5>Linked In: <span>{{this.linkedin}}</span></h5>
+    <h5>CP Website: <span>{{this.cpweb}}</span></h5>
+    <h5>About: <span>{{this.about}}</span></h5>
+    <h5>Password: <span>{{this.password}}</span></h5>
+    {{/each}}
+  {{!-- </form> --}}
+</body>
+
+</html>

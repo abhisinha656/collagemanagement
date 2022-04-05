@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>header}}
+    <title>BCA | Admin_login</title>
+</head>
+
+<body>
+
+    <div class="adlogin">
+        <h3>Admin_Login</h3>
+        <form method="POST" action="/adminlogin">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Code</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="code" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
