@@ -19,14 +19,11 @@
           <a type="button" href="viewassign" class="btn btn-outline-success">
             Assignment
           </a>
-
           <a class="btn btn-outline-success" type="submit" href="logout7">Logout</a>
         </form>
       </div>
     </div>
   </nav>
-
-  <!-- Button trigger modal -->
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
@@ -42,20 +39,19 @@
 
           {{# each data}}
           <div class="form-group">
-            <h5>Reg. No: </h5>
-            <label for="exampleFormControlInput1">{{this.regno}}</label>
+            <h5><strong>Reg. No: </strong></h5><label for="exampleFormControlInput1">{{this.regno}}</label>
           </div>
           <div class="form-group">
-            <h5>Name: </h5><label for="exampleFormControlInput1">{{this.name}}</label>
+            <h5><strong>Name: </strong></h5><label for="exampleFormControlInput1">{{this.name}}</label>
           </div>
           <div class="form-group">
-            <h5>Date of Birth: </h5><label for="exampleFormControlInput1">{{this.dob}}</label>
+            <h5><strong>Date of Birth: </strong></h5><label for="exampleFormControlInput1">{{this.dob}}</label>
           </div>
 
           <form method="POST" action="/studentprofile" enctype="multipart/form-data">
             <div class="form-group">
               <label for="exampleFormControlFile1">Upload Profile Pic</label>
-              <input type="file" class="form-control-file" id="image" name="propic">
+              <input type="file" class="form-control-file" id="image" name="propic" value="./uploads/image/{{this.propic}}">
             </div>
             <div class="form-group"><label for="exampleFormControlInput1">Email address</label>
               <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
@@ -71,13 +67,13 @@
             </div>
             <label for="">Gender</label>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gen" id="flexRadioDefault1" value="Male">
+              <input class="form-check-input" type="radio" name="gen" id="mycheck('{{this.gen}}')" value="Male" >
               <label class="form-check-label" for="flexRadioDefault1">
                 Male
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gen" id="flexRadioDefault2" value="Female">
+              <input class="form-check-input" type="radio" name="gen" id="mycheck1('{{this.gen}}')"value="Female">
               <label class="form-check-label" for="flexRadioDefault2">
                 Female
               </label>
@@ -109,30 +105,28 @@
       </div>
     </div>
   </div>
-  {{!-- <script>
-    myfun(gen){
-      if (gen === 'Male') {
-        return 'checked';
-      }
+  <script type="text/javascript">
+  function mycheck(gen){
+    if(gen === 'Male'){
+      document.getElementById("myCheck").checked = true;
     }
-    myfun1(gen){
-      if (gen === 'Female') {
-        return 'checked';
-      }
+  }
+  function mycheck1(gen){
+    if(gen === 'Female'){
+      document.getElementById("myCheck1").checked = true;
     }
-  </script> --}}
-
+  }
+  </script>
   {{!-- // profile view --}}
   <form method="GET" action="/studentprofile">
     {{# each data}}
     <div class="profile_view">
       <div class="p_img">
-        {{!-- {{#if this.propic}} --}}
-          {{!-- <img src="../image/istockphoto.jpg" alt="pro_pic" height="140" width="110"> --}}
-        {{!-- {{else}} --}}
-          <img  alt="pro_pic" height="140" width="110" src="./uploads/image/{{this.propic}}">
-
-        {{!-- {{/if}} --}}
+        {{#if this.propic}}
+        <img alt="pro_pic" height="140" width="110" src="./uploads/image/{{this.propic}}">
+        {{else}}
+        <img src="../image/istockphoto.jpg" alt="pro_pic" height="140" width="110">
+        {{/if}}
       </div>
 
       <div class="p_about">
@@ -159,12 +153,7 @@
     {{/each}}
   </form>
 
-
-
-
-
-
-  {{!-- // /////////////////////////////////// --}}
+  {{!-- ///////////////////////////////////// --}}
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

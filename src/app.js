@@ -71,7 +71,7 @@ app.post('/', async (req, res) => {
         const Adcode = await sdata.findOne({ regno: regno });
         const token = await Adcode.generateAuthToken();
         res.cookie("jwt", token, {
-            expires: new Date(Date.now() + 500000),
+            expires: new Date(Date.now() + 600000),
             httpOnly: true,
         });
         if (Adcode.password === password) {
@@ -191,7 +191,7 @@ app.get('/student', auth, (req, res) => {
 
 
 
-app.post('/student', auth, upload,  async (req, res,) => {
+app.post('/student', auth,  async (req, res,) => {
     console.log(req.file);
     try {
         const Recol = new sdata({
@@ -199,7 +199,7 @@ app.post('/student', auth, upload,  async (req, res,) => {
             name: req.body.name,
             dob: req.body.dob,
             password: req.body.dob,
-            propic: req.file.filename, 
+            // propic: req.file.filename, 
         })
         const token = await Recol.generateAuthToken();
 
@@ -250,7 +250,7 @@ app.post('/notification', async (req, res) => {
     }
 });
 
-app.get("/noti_delete/:id", (req, res) => {
+app.get("/notification/noti_delete/:id", (req, res) => {
 
 
     notify.findByIdAndRemove(req.params.id, (err, doc) => {
@@ -288,11 +288,10 @@ app.post('/assignment', async (req, res) => {
     }
 });
 
-app.get("/assign_delete/:id", (req, res) => {
+app.get("/assignment/assign_delete/:id", (req, res) => {
 
     assign.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            JSAlert.alert("This is an alert.");
             res.redirect('/assignment');
         } else {
             console.log('Failed to Delete user Details: ' + err);
@@ -370,7 +369,7 @@ app.post('/adminlogin', async (req, res) => {
         // console.log(Adcode);
         const token = await Adcode.generateAuthToken();
         res.cookie("jwt", token, {
-            expires: new Date(Date.now() + 500000),
+            expires: new Date(Date.now() + 600000),
             httpOnly: true,
         });
         if (Adcode.password === password) {

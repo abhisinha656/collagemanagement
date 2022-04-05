@@ -84,7 +84,7 @@
                         swal("Poof! We are Deleting Your imaginary file!", {
                             icon: "success",
                         });
-                        document.location.href="http://localhost:3000/assign_delete/" + id;
+                        window.location.href= window.location.href +"/assign_delete/" + id;
                     } else {
                         swal("Your imaginary file is safe!");
                     }
