@@ -63,7 +63,7 @@ sdata.methods.generateAuthToken = async function(){
     // console.log('Aman');
     try{
         // console.log(this._id);
-        const token = jwt.sign({_id:this._id.toString()}, "amamamamamamamamamamamamamamamamamamamamam");
+        const token = jwt.sign({_id:this._id.toString()}, process.env.SECRET_KEY);
         // console.log(token);
         this.tokens = this.tokens.concat({token:token});
         await this.save();
@@ -73,13 +73,6 @@ sdata.methods.generateAuthToken = async function(){
         console.log(e);
     }
 }
-
-// Image
-// sdata.virtual('imgSrc').get(function(){
-//     if(this.propic.data!=null){
-//         return `data:${this.propic.contentType};charset=utf-8;based64,${this.propic.data.toString('base64')}`;
-//     }
-// })
 
 const data = new mongoose.model("Student", sdata);
 module.exports = data;

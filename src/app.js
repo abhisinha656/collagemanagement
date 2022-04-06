@@ -1,12 +1,14 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const path = require('path');
 const hbs = require('hbs');
 const swal = require("sweetalert");
 const multer = require("multer");
 require('./db/conn');
 const jwt = require("jsonwebtoken");
+
 const JSAlert = require("js-alert");
 const logadmin = require("./models/adminlog");
 const assign = require("./models/assign");
@@ -30,7 +32,7 @@ app.use(cookieParser());
 app.set("view engine", "hbs");
 app.set("views", template_path);
 hbs.registerPartials(partialspath);
-
+// console.log(process.env.SECRET_KEY);
 
 app.get("/invalid", (req, res) => {
     res.send("<h1 style='text-align:center;'> Invalid User<br>Go Back And Try Again....</h1>");
@@ -43,8 +45,8 @@ app.get("/regno_reg", (req, res) => {
 const Storage = multer.diskStorage({
     destination: './public/uploads/image',
 
-    filename: function(request, file, callback){
-        callback(null, file.fieldname + '-' + Date.now()+path.extname(file.originalname));
+    filename: function (request, file, callback) {
+        callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     },
 })
 
@@ -67,20 +69,23 @@ app.get("/", (req, res) => {
 app.post('/', async (req, res) => {
     try {
         const regno = req.body.regno;
-        const password = req.body.password;
-        const Adcode = await sdata.findOne({ regno: regno });
-        const token = await Adcode.generateAuthToken();
-        res.cookie("jwt", token, {
-            expires: new Date(Date.now() + 600000),
-            httpOnly: true,
-        });
-        if (Adcode.password === password) {
-            return res.redirect('/studentprofile');
+        const pass = req.body.password;
+        const slogin = await sdata.findOne({ regno: regno });
+        if (slogin) {
+            if ((slogin.password) === pass) {
+                const token = await slogin.generateAuthToken();
+                res.cookie("jwt", token, {
+                    expires: new Date(Date.now() + 600000),
+                    httpOnly: true,
+                });
+                return res.redirect('/studentprofile');
+            } else {
+                return res.redirect('/invalid');
+            }
         } else {
             return res.redirect('/invalid');
-            // alert('Invalid Credentials....');
         }
-        console.log(token);
+
     } catch (e) {
         res.status(400).send(e);
     }
@@ -111,22 +116,18 @@ app.get("/logout7", authh, async (req, res) => {
     }
 })
 
-// app.put('/studentprofile', authh, async (req, res) => {
-//     try {
-//         const Recol = new sdata({
-//             regno: req.body.regno,
-//             name: req.body.name,
-//             dob: req.body.dob,
-//             password: req.body.dob,
-//         })
-//         const token = await Recol.generateAuthToken();
-//         const reg = await Recol.save();
-//         res.status(201);
-//         return res.redirect('/student');
-//     } catch (err) {
-//         res.status(400).send(err);
-//     }
-// });
+app.get('/user/:id', async (req, res) => {
+    // res.send(req.params.id);
+    sdata.find({ _id: req.params.id }, (err, docs) => {
+        if (!err) {
+            res.render("guest", {
+                data: docs
+            })
+        } else {
+            console.log('Failed to retrieve the List: ' + err);
+        }
+    });
+});
 
 app.get("/studentprofile", authh, (req, res) => {
     sdata.find({ _id: req.user }, (err, docs) => {
@@ -156,25 +157,47 @@ app.get("/viewassign", authh, (req, res) => {
 
 
 app.post('/studentprofile', upload, authh, (req, res) => {
-    sdata.findByIdAndUpdate(req.user._id, {
-        email: req.body.email,
-        gen: req.body.gen,
-        about: req.body.about,
-        phone: req.body.phone,
-        password: req.body.password,
-        linkedin: req.body.linkedin,
-        cpweb: req.body.cpweb,
-        address: req.body.address,
-        propic: req.file.filename,
-    }, (err, docs) => {
-        if (err) {
-            console.log(err)
-        }
-        else {
-            console.log("Updated User : ", docs);
-            return res.redirect('/studentprofile');
-        }
-    });
+    if(req.file){
+        sdata.findByIdAndUpdate(req.user._id, {
+            email: req.body.email,
+            gen: req.body.gen,
+            about: req.body.about,
+            phone: req.body.phone,
+            password: req.body.password,
+            linkedin: req.body.linkedin,
+            cpweb: req.body.cpweb,
+            address: req.body.address,
+            propic: req.file.filename,
+        }, (err, docs) => {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                console.log("Updated User : ", docs);
+                return res.redirect('/studentprofile');
+            }
+        });
+    }else{
+        sdata.findByIdAndUpdate(req.user._id, {
+            email: req.body.email,
+            gen: req.body.gen,
+            about: req.body.about,
+            phone: req.body.phone,
+            password: req.body.password,
+            linkedin: req.body.linkedin,
+            cpweb: req.body.cpweb,
+            address: req.body.address,
+            // propic: req.file.filename,
+        }, (err, docs) => {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                console.log("Updated User : ", docs);
+                return res.redirect('/studentprofile');
+            }
+        });
+    }
 });
 
 app.get('/student', auth, (req, res) => {
@@ -191,7 +214,7 @@ app.get('/student', auth, (req, res) => {
 
 
 
-app.post('/student', auth,  async (req, res,) => {
+app.post('/student', auth, async (req, res,) => {
     console.log(req.file);
     try {
         const Recol = new sdata({
@@ -367,25 +390,28 @@ app.post('/adminlogin', async (req, res) => {
         const password = req.body.password;
         const Adcode = await logadmin.findOne({ code: code });
         // console.log(Adcode);
-        const token = await Adcode.generateAuthToken();
-        res.cookie("jwt", token, {
-            expires: new Date(Date.now() + 600000),
-            httpOnly: true,
-        });
-        if (Adcode.password === password) {
-            return res.status(200).redirect('/student');
-        } else {
-            // alert('Invalid Credentials....');
+        if(Adcode){
+            if (Adcode.password === password) {
+                const token = await Adcode.generateAuthToken();
+                res.cookie("jwt", token, {
+                    expires: new Date(Date.now() + 600000),
+                    httpOnly: true,
+                });
+                return res.status(200).redirect('/student');
+            } else {
+                return res.redirect('/invalid');
+            }
+        }else{
             return res.redirect('/invalid');
         }
-        console.log(token);
-        // Store cookie
-
     } catch (e) {
         res.status(400).send(e);
     }
 })
 
+app.get('/*', (req, res) => {
+    res.render('404');
+});
 app.listen(port, () => {
     console.log(`Server Running....`);
 })
