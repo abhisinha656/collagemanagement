@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.set("view engine", "hbs");
 app.set("views", template_path);
 hbs.registerPartials(partialspath);
-// console.log(process.env.SECRET_KEY);
+
 
 app.get("/invalid", (req, res) => {
     res.send("<h1 style='text-align:center;'> Invalid User<br>Go Back And Try Again....</h1>");

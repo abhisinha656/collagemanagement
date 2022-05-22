@@ -1,0 +1,219 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.89);
+    box-sizing: border-box;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}
+nav{
+    background-color: black;
+    position: fixed;
+}
+nav .container-fluid a{
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.navbar-brand{
+    padding-left: 42px;
+}
+.navbar-nav{
+    padding-right: 20px;
+}
+/* home Section */
+.home{
+    background-image: linear-gradient(white, white, black);
+    height: 90vh;
+    width: 100%;
+    display: flex;
+}
+.text{
+    color: white;
+    background-color: transparent;
+    width: 50%;
+    margin-top:20%;
+    margin-left:10%;
+}
+.text h5{
+    background-color: transparent;
+    color: black;
+}
+.text h1{
+    color: black;
+    font-size: 120px;
+    font-weight: 700;
+    background-color:transparent;
+}
+.svg{
+    margin-top:15%;
+    margin-left: 5%;
+    background-color:transparent;
+    color: white;
+    width: 50%;
+}
+.svg img{
+    height: 400px;
+    background-color:transparent;
+}
+@media (max-width: 778px){
+    .home{
+        background-image: url('/image/smbg.jpg');
+        height: 100vh;
+        width: 100%;
+    }
+    .svg{
+        display: none;
+    }
+    .text{
+        margin-top:30%;
+    }
+    .text h1{
+        color: black;
+        padding-top: 100px;
+        font-size: 120px;
+        font-weight: 700;
+        background-color:transparent;
+    }
+}
+/* gallery */
+.gallery{
+    background-color: black;
+}
+.gallery .col img{
+    border: 3px solid red;
+    margin-top:4px;
+}
+
+
+/* about Section */
+.about{
+    color: white;
+    background-color: black;
+}
+
+.abtbox{
+    width: 100%;
+    display: flex;
+}
+.abttxt{
+    width: 50%;
+    padding: 10px 10px;
+}
+.carosal{
+    width: 50%;
+    padding: 10px 10px;
+}
+@media (max-width: 991px){
+    .abtbox{
+        display: block;
+        width: 100%
+    }
+    .abttxt{
+        width: 100%;
+        text-align: center;
+        
+    }
+    .carosal{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/* faculty Section */
+.faculty{
+    color: white;
+    width: 100%;
+    background-color: black;
+}
+.fact{
+    width: 100%;
+    display: flex;
+    min-height: 56vh;
+    align-items: center;
+}
+.fact{
+    width: 100%;
+}
+.fact .carousel2{
+    width: 100%;
+    max-width: 1200px;
+    margin:auto;
+    padding:0 43px;
+
+}
+
+.imgtop{
+    height: 97px;
+    padding: 0px 94px;
+}
+.immmg{
+    border: 3px solid red;
+    border-radius: 43px;
+    margin: 0px 9px;
+
+}
+
+
+/* owldots */
+.owl-dots{
+    text-align: center;
+    margin-top: 40px;
+}
+.owl-dot{
+    height: 15px;
+    width: 45px;
+    border-radius: 25px;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid #ffffff!important;
+    transition: all 0.3s ease;
+}
+.owl-dot:hover, .owl-dot.active{
+    background: #ffffff !important;
+}
+.card-text{
+    font-size: 20px;
+}
+
+/* notify Section */
+.notify{
+    color: white;
+    text-align: center;
+    background-color: black;
+
+}
+.notbox{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5%;
+}
+.box{
+    width: 100%;
+    height: 500px;
+    overflow: auto;
+}
+.not_dt{
+    background-color:rgba(40, 9, 3, 0.5);
+    margin: 4px;
+    padding: 4px;
+}
+
+
+/* Footer */
+.footer{
+    width: 100%;
+    display: flex;
+}
+.ft_text{
+    width: 50%;
+    padding: 31px 10px;
+    text-align:center;
+}
+.ft_logo{
+    width: 50%;
+    padding: 31px 10px;
+    text-align:center;
+}
+
