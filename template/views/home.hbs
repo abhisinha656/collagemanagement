@@ -31,9 +31,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    {{!-- <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
-                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About</a>
                     </li>
@@ -43,7 +40,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#faculty">Faculty</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="#notify">Notifications</a>
                     </li>
@@ -79,23 +75,20 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" style="background-color: transparent;">
+                    <form method="POST" style="background-color: transparent;">
                         <div class="mb-3" style="background-color: transparent;">
                             <label for="exampleInputEmail1" class="form-label"
                                 style="color: white; background-color: transparent;">Registration No.</label>
                             <input type="number" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-
+                                aria-describedby="emailHelp" name="regno">
                         </div>
                         <div class="mb-3" style="background-color: transparent;">
                             <label for="exampleInputPassword1" class="form-label"
                                 style="color: white; background-color: transparent;">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                         </div>
-
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -106,8 +99,6 @@
         <br><br><br>
         <h1 style="text-align:center;">About</h1>
         <div class="abtbox">
-
-
             <div class="carosal">
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -175,7 +166,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- //Faculty Section -->
